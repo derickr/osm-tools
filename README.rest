@@ -1,0 +1,23 @@
+=========
+OSM Tools
+=========
+
+This repository contains a set of tools that use OpenStreetMap data.
+
+The ``lib/`` directory contains two PHP files. One for writing OSM files
+(``osm-writer.php``) and one file (``convert.php``) containing classes for
+converting from the UK National Grid to latitude/longitude as well as routines
+to convert between OSGB36 and WGS84.
+
+The ``mkgmap-styles/`` directory contains styles to use with mkgmap_. There is
+my normal style (``mkgmap-styles/derick``) and one that is used together with
+the ``osm-analysis-to-garmin`` tool (``mkgmap-styles/osmanalysis``).
+
+.. mkgmap: http://wiki.openstreetmap.org/wiki/Mkgmap
+
+The ``osm-analyis-to-garmin/`` directory contains a tool to convert the data
+from ITO World's `OSM Analysis`_. See the `osm-analysis-to-garmin`_ directory
+for a README on it.
+
+.. _`OSM Analysis`: http://www.itoworld.com/static/osm_analysis.html
+.. _`osm-analysis-to-garmin`: osm-analysis-to-garmin/

@@ -1,0 +1,19 @@
+======================
+OSM Analysis to Garmin
+======================
+
+This directory contains a tool to convert the data from ITO World's `OSM
+Analysis`_. The ``run.sh`` script is the main entry to the script.
+
+It fetches all the data by looping over all the names in ``names.txt`` so that
+those areas are fetched by screen-scraping from the OSM Analysis website.  If
+you're only interested in one area, just make sure the ``names.txt`` file just
+contains that name.
+
+It then creates a ``template.args`` file by running ``process-names.php``.  The
+created file is then used by the ``convert.sh`` script to create the Garmin
+specific ``.img`` files and the ``gmapsupp.img`` file. If you run those scripts
+yourself, **please** modify the ``family-id`` parameter in ``convert.sh``.  You
+also should change the ``$baseMapId`` value in ``process-names.php``.
+
+.. _`OSM Analysis`: http://www.itoworld.com/static/osm_analysis.html
