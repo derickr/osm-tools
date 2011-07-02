@@ -27,4 +27,4 @@ from `Musical Chairs`_ into a Garmin image file. See the
 `musical-chairs-to-garmin`_ directory for a README on it.
 
 .. _`Musical Chairs`: http://ris.dev.openstreetmap.org/oslmusicalchairs/map
-.. _`musical-chairs-to-garmin`: https://github.com/derickr/osm-tools/tree/master/osm-analyis-to-garmin
+.. _`musical-chairs-to-garmin`: https://github.com/derickr/osm-tools/tree/master/musical-chairs-to-garmin
