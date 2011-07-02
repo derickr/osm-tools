@@ -24,7 +24,7 @@ from ITO World's `OSM Analysis`_ into a Garmin image file. See the
 
 The ``musical-chairs-to-garmin/`` directory contains a tool to convert the data
 from `Musical Chairs`_ into a Garmin image file. See the
-`music-charis-to-garmin`_ directory for a README on it.
+`musical-chairs-to-garmin`_ directory for a README on it.
 
 .. _`Musical Chairs`: http://ris.dev.openstreetmap.org/oslmusicalchairs/map
 .. _`musical-charis-to-garmin`: https://github.com/derickr/osm-tools/tree/master/osm-analyis-to-garmin
