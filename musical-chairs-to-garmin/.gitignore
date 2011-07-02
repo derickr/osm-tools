@@ -1,0 +1,6 @@
+*.swp
+gmapsupp.img
+images/
+matches-latest.csv.gz
+musical-chairs.osm
+musical-chairs.osm.gz

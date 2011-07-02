@@ -1,0 +1,18 @@
+========================
+Musical Chairs to Garmin
+========================
+
+This directory contains a tool to convert the data from Robert Scott's `Musical
+Chairs`_ to a Garmin image file. The ``run.sh`` script is the main entry to the
+script.
+
+It fetches a CSV dump from the OSM servers and stores the data in
+``matches-latest.csv.gz``.  It then process that file and creates the
+``musical-chairs.osm.gz`` file which is then processed by the ``convert.sh``
+script into a Garmin ``gmapsupp.img`` file.
+
+If you run those scripts yourself, **please** modify the ``family-id``
+parameter in ``convert.sh``.  You also should change the ``mapname`` in
+``template.args``.
+
+.. _`Musical Chairs`: http://ris.dev.openstreetmap.org/oslmusicalchairs/map

@@ -9,3 +9,4 @@
 # for more information.
 
 osmanalysis=missing { name '${name}' } [0x0400 resolution 16]
+osmanalysis=mismatch { name '${name}' } [0x0400 resolution 16]
