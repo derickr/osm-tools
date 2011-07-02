@@ -3,7 +3,8 @@ OSM Analysis to Garmin
 ======================
 
 This directory contains a tool to convert the data from ITO World's `OSM
-Analysis`_. The ``run.sh`` script is the main entry to the script.
+Analysis`_ into a Garmin image file. The ``run.sh`` script is the main entry to
+the script.
 
 It fetches all the data by looping over all the names in ``names.txt`` so that
 those areas are fetched by screen-scraping from the OSM Analysis website.  If
