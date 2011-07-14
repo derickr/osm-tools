@@ -8,5 +8,5 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-osmanalysis=missing { name '${name}' } [0x4c20 resolution 16]
-osmanalysis=mismatch { name '${name}' } [0x4c20 resolution 16]
+osmanalysis=missing { name '${name}' } [0x0400 resolution 16]
+osmanalysis=mismatch { name '${name}' } [0x0400 resolution 16]
