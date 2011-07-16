@@ -22,7 +22,8 @@ while( false !== ($line = fgetcsv($f) ) )
 		$osm->openNode( $line[4], $line[3] );
 		$missing = strlen( $line[1] ) ? $line[1] : $line[2];
 		$osm->writeTag( 'osmanalysis', 'missing' );
-		$osm->writeTag( "name", htmlspecialchars( "Missing: {$missing}", ENT_QUOTES ) );
+		$osm->writeTag( "name", htmlspecialchars( "{$missing}", ENT_QUOTES ) );
+		$osm->writeTag( "addr:street", htmlspecialchars( "OSM has nothing", ENT_QUOTES ) );
 		$osm->closeNode();
 		continue;
 	}
@@ -30,7 +31,8 @@ while( false !== ($line = fgetcsv($f) ) )
 	{
 		$osm->openNode( $line[4], $line[3] );
 		$osm->writeTag( 'osmanalysis', 'missing' );
-		$osm->writeTag( "name", htmlspecialchars( "Missing ref: {$line[2]}", ENT_QUOTES ) );
+		$osm->writeTag( "name", htmlspecialchars( "{$line[2]}", ENT_QUOTES ) );
+		$osm->writeTag( "addr:street", htmlspecialchars( "OSM has nothing", ENT_QUOTES ) );
 		$osm->closeNode();
 		continue;
 	}
@@ -38,7 +40,8 @@ while( false !== ($line = fgetcsv($f) ) )
 	{
 		$osm->openNode( $line[4], $line[3] );
 		$osm->writeTag( 'osmanalysis', 'missing' );
-		$osm->writeTag( "name", htmlspecialchars( "Missing name: {$line[1]}", ENT_QUOTES ) );
+		$osm->writeTag( "name", htmlspecialchars( "{$line[1]}", ENT_QUOTES ) );
+		$osm->writeTag( "addr:street", htmlspecialchars( "OSM has nothing", ENT_QUOTES ) );
 		$osm->closeNode();
 		continue;
 	}
@@ -46,17 +49,31 @@ while( false !== ($line = fgetcsv($f) ) )
 	{
 		$osm->openNode( $line[4], $line[3] );
 		$osm->writeTag( 'osmanalysis', 'missing' );
-		$osm->writeTag( "name", htmlspecialchars( "Diff ref: {$line[2]} -> {$line[9]}", ENT_QUOTES ) );
+		$osm->writeTag( "name", htmlspecialchars( "{$line[2]}", ENT_QUOTES ) );
+		$osm->writeTag( "addr:street", htmlspecialchars( "OSM has nothing", ENT_QUOTES ) );
+		$osm->closeNode();
+
+		$osm->openNode( $line[4], $line[3] );
+		$osm->writeTag( 'osmanalysis', 'missing' );
+		$osm->writeTag( "name", htmlspecialchars( "{$line[9]}", ENT_QUOTES ) );
+		$osm->writeTag( "addr:street", htmlspecialchars( "OSM has nothing", ENT_QUOTES ) );
 		$osm->closeNode();
 	}
 
 	{
-		$osm->openNode( $line[4], $line[3] );
 		$expected = strlen( $line[1] ) ? $line[1] : $line[2];
 		$real     = strlen( $line[8] ) ? $line[8] : $line[9];
+		$osm->openNode( $line[4], $line[3] );
 		$osm->writeTag( 'osmanalysis', 'mismatch' );
 		$osm->writeTag( 'osmanalysislevel', $line[5] );
-		$osm->writeTag( "name", htmlspecialchars( "Diff: {$expected} -> {$real}", ENT_QUOTES ) );
+		$osm->writeTag( "name", htmlspecialchars( "{$expected}", ENT_QUOTES ) );
+		$osm->writeTag( "addr:street", htmlspecialchars( "OSM has {$real}", ENT_QUOTES ) );
+		$osm->closeNode();
+		$osm->openNode( $line[4], $line[3] );
+		$osm->writeTag( 'osmanalysis', 'mismatch' );
+		$osm->writeTag( 'osmanalysislevel', $line[5] );
+		$osm->writeTag( "name", htmlspecialchars( "{$real}", ENT_QUOTES ) );
+		$osm->writeTag( "addr:street", htmlspecialchars( "OSL has {$expected}", ENT_QUOTES ) );
 		$osm->closeNode();
 	}
 }
