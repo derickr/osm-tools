@@ -286,3 +286,44 @@ function lat2y( $lat, $pixels = 32768 )
 {
 	return ((atanh(sin(deg2rad(-$lat))) / M_PI) + 1) * ($pixels / 2);
 }
+
+function tile_number( $zoom, $lat, $lon )
+{
+	$xtile = floor((($lon + 180) / 360) * pow(2, $zoom));
+	$ytile = floor((1 - log(tan(deg2rad($lat)) + 1 / cos(deg2rad($lat))) / pi()) /2 * pow(2, $zoom));
+
+	return array( $xtile, $ytile );
+}
+
+function tile_pyramid( $zoom, $xtile, $ytile, $zoom_min, $zoom_max )
+{
+	$tiles = array();
+	for ( $i = $zoom_min; $i <= $zoom_max; $i++ )
+	{
+		if ( $i < $zoom )
+		{
+			$x = round( $xtile / pow( 2, $zoom - $i ) );
+			$y = round( $ytile / pow( 2, $zoom - $i ) );
+			$tiles[] = "$i/$x/$y";
+		}
+		else if ( $i == $zoom )
+		{
+			$tiles[] = "$i/$xtile/$ytile";
+		}
+		else
+		{
+			$xMin = $xtile * pow( 2, $i - $zoom );
+			$yMin = $ytile * pow( 2, $i - $zoom );
+			$xMax = ($xtile+1) * pow( 2, $i - $zoom ) - 1;
+			$yMax = ($ytile+1) * pow( 2, $i - $zoom ) - 1;
+			for ( $j = $xMin; $j <= $xMax; $j++ )
+			{
+				for ( $k = $yMin; $k <= $yMax; $k++ )
+				{
+					$tiles[] = "$i/$j/$k";
+				}
+			}
+		}
+	}
+	return $tiles;
+}
