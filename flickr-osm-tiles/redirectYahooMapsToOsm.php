@@ -24,6 +24,8 @@ do {
     // The block to test for Yahoo! Maps:
     if ( preg_match( '@maps\d?.yimg.com@', $urlParts['host'] ) )
     {
+        $range = range('a', 'c');
+        $server = $range[rand(0, sizeof($range)-1)];
         if ( !isset( $queryParts['r'] ) || $queryParts['r'] == 0 )
         {
             // This is the format that Flickr uses
@@ -35,8 +37,6 @@ do {
             $y = pow(2, $z-1) - $queryParts['y'] - 1;
 
             // Assemble new URL and write log line
-            $range = range('a', 'c');
-            $server = $range[rand(0, sizeof($range)-1)];
             $newUrl = "http://{$server}.tile.openstreetmap.org/$z/$x/$y.png";
             fwrite( $a, "REDIR: $parts[0] => $newUrl\n" );
         }
@@ -51,7 +51,7 @@ do {
             $y = pow( 2, $z - 1 ) - $queryParts['y'] - 1;
 
             // Assemble new URL and write log line
-            $newUrl = "http://b.tile.openstreetmap.org/$z/$x/$y.png";
+            $newUrl = "http://{$server}.tile.openstreetmap.org/$z/$x/$y.png";
             fwrite( $a, "REDIR: $parts[0] => $newUrl\n" );
         }
     } else {
