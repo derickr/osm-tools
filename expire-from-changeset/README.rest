@@ -1,0 +1,8 @@
+==================
+Tile Expiry Script
+==================
+
+This directory contains a simple script that uses OSC file to create a file
+containing tile numbers to expire. Right now, it only handles nodes, but it
+does create a whole "pyramid" with some fuzzing to expire slightly surrounding
+areas too.
