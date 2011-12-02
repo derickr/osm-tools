@@ -25,8 +25,8 @@ foreach ($f->create as $create)
 $expireTiles = array();
 foreach ( $points as $point )
 {
-	list( $x, $y ) = tile_number( 14, $point[0], $point[1] );
-	$expireTiles["14;$x;$y"] = true;
+	list( $x, $y ) = tile_number( 15, $point[0], $point[1] );
+	$expireTiles["15;$x;$y"] = true;
 }
 
 $tiles = array();
