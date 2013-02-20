@@ -1,4 +1,5 @@
 var map;
+var feature;
 
 function load_map() {
 	map = new L.Map('map', {zoomControl: true});
@@ -10,14 +11,24 @@ function load_map() {
 	map.setView(new L.LatLng(51.538594, -0.198075), 12).addLayer(osm);
 }
 
-function chooseAddr(lat, lng, type) {
-    var location = new L.LatLng(lat, lng);
-    map.panTo(location);
+function chooseAddr(lat1, lng1, lat2, lng2, osm_type) {
+	var loc1 = new L.LatLng(lat1, lng1);
+	var loc2 = new L.LatLng(lat2, lng2);
+	var bounds = new L.LatLngBounds(loc1, loc2);
 
-	if (type == 'city' || type == 'administrative') {
-		map.setZoom(11);
+	if (feature) {
+		map.removeLayer(feature);
+	}
+	if (osm_type == "node") {
+		feature = L.circle( loc1, 25, {color: 'green', fill: false}).addTo(map);
+		map.fitBounds(bounds);
+		map.setZoom(18);
 	} else {
-		map.setZoom(15);
+		var loc3 = new L.LatLng(lat1, lng2);
+		var loc4 = new L.LatLng(lat2, lng1);
+
+		feature = L.polyline( [loc1, loc4, loc2, loc3, loc1], {color: 'red'}).addTo(map);
+		map.fitBounds(bounds);
 	}
 }
 
@@ -28,7 +39,8 @@ function addr_search() {
         var items = [];
 
         $.each(data, function(key, val) {
-            items.push("<li><a href='#' onclick='chooseAddr(" + val.lat + ", " + val.lon + ", \"" + val.type + "\");return false;'>" + val.display_name + '</a></li>');
+            bb = val.boundingbox;
+            items.push("<li><a href='#' onclick='chooseAddr(" + bb[0] + ", " + bb[2] + ", " + bb[1] + ", " + bb[3]  + ", \"" + val.osm_type + "\");return false;'>" + val.display_name + '</a></li>');
         });
 
 		$('#results').empty();
