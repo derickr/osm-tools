@@ -295,6 +295,29 @@ function tile_number( $zoom, $lat, $lon )
 	return array( $xtile, $ytile );
 }
 
+function tile2lat($y, $z)
+{
+	$n = pow(2, $z);
+	return rad2deg(atan(sinh(M_PI * (1 - 2 * $y / $n))));
+}
+
+function tile2lon($x, $z)
+{
+	$n = pow(2, $z);
+	return $x / $n * 360.0 - 180;
+}
+
+function tile2boundingbox( $x, $y, $zoom )
+{
+	$bb = array();
+	$bb['north'] = tile2lat($y, $zoom);
+	$bb['south'] = tile2lat($y + 1, $zoom);
+	$bb['west'] = tile2lon($x, $zoom);
+	$bb['east'] = tile2lon($x + 1, $zoom);
+
+	return $bb;
+}
+
 function tile_pyramid( $zoom, $xtile, $ytile, $zoom_min, $zoom_max )
 {
 	$tiles = array();
